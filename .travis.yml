@@ -9,6 +9,8 @@ addons:
 language: java
 jdk:
 - oraclejdk8
+python:
+- "2.7"
 services:
 - mysql
 git:
@@ -17,6 +19,7 @@ install: true
 before_script:
 - mysql -u root -e 'create database genie;'
 - mysql -u root genie < genie-ddl/mysql/3.0.0-schema.mysql.sql
+- pip install twine bumpversion
 script: ./gradle/buildViaTravis.sh
 before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -30,6 +33,8 @@ env:
   - secure: g8oRT4YUr2VyO6h8+Pm+MvSgPyfEtd+ndCxF70F0SUj5eNV9SFt7yYOn6V6Mxx9eEyZMQSdPed+70+94Nd8yD+cjIGHNnlvKt6V/Q4i09XxhT3/ZiM8B9qRd1eGON0mEaU5Bl+918CGEIVCVsfLPGLVpItaSz2Tda46EDOdRHO8=
   - secure: c0LFCj1KBTEIFSWlpRGgaei86bfrpnSr8qmMOu/S4dl2JRnCnW9AHmrmQzYhd5NlNPugOAncYk9lnkxA7xqtDlv/Ih4YKBaeP924hwLWO//0tKgxhF1dr0dHI+bRKURvcSyLXFDNFjuXUrw4SalBLbZCmiNFzJLMmy2Lvs9UTso=
   - secure: Nv1mMLy2XX+bYziq536KbNg/mAVDTaLw3q3bKP2Mil3JVicXxYVbkEo+DK2O4rsuT7JNbyroN6/3x7xT9qBo4X7vzCjU91QUAxq5t0SmG0FW+oAIApHWTum307b5XS2UyqV/88gg1O6g9or3bKmDLUsJ1A/+fsASozA207a7zls=
+  - secure: eIQVeA4UYBqyuSGCo16wDB4dG69jbEfJlzuCrluof0wdxf1D66MU5VJiXsZWT04bZ27UT7O/dg2aisc3t0lVwLUuTykIA7U4HQI8e5wW/LkeCXddfIzDNY5TxFCKAT62NyiXYuU6kWLZs6D1BTKlqxV23tamLbs4/UByZdQEGrA=
+  - secure: Q3XvSdJ9fJKaaptXEspZP/VbPfii9EXXZheOXRnpI7+4F5kTOMyLZ/t4FkFKBUryiTMc4rGdgNA3oK/MOgMdLF1tCogV4DkCA+GfrIimlxrMj4rZP6gXm6kRbet+ZhJk6sNAoHfS66mlQXv9gdE4MhzWGKBpE7Q30AuEDdzR1iI=
 notifications:
   slack:
     secure: H5nS+GX6TYTU27ur6YFG5OgrQeUbzXLok5ub6+xcmyYEeVPpnQ1Gg/wKqTAGsP9j6tAkqPpxgYT9i9Do6eyTEplK6bTvQVyhilsEDtxGJbUO8XOE9TSo6jAe/lD3EB5l46gxFID+Hg9IkPii4LwEabP7PVehrB1JfNZ6QDgSRRM=
