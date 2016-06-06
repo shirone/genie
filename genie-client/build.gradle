@@ -40,7 +40,6 @@ clean {
 task buildPythonPackage(type: Exec) {
     dependsOn clean
     workingDir "src/main/python"
-    commandLine "pip", "install", "twine", "bumpversion"
     commandLine "python", "setup.py", "sdist"
 }
 
