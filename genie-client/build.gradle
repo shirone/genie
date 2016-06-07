@@ -40,7 +40,7 @@ clean {
 task testPythonPackage(type: Exec) {
     dependsOn clean
     workingDir "src/main/python"
-    commandLine "ls", "-l"
+    commandLine "nosetests", "-sv"
 }
 
 task buildPythonPackage(type: Exec) {
@@ -52,5 +52,5 @@ task buildPythonPackage(type: Exec) {
 task uploadToPypi(type: Exec) {
     dependsOn buildPythonPackage
     workingDir "src/main/python"
-    commandLine "echo PYPI_USERNAME: $System.env.PYPI_USERNAME"
+    commandLine "sh", "-c", "echo PYPI_USERNAME: $System.env.PYPI_USERNAME"
 }
