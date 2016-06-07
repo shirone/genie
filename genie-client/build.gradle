@@ -40,7 +40,8 @@ clean {
 task testPythonPackage(type: Exec) {
     dependsOn clean
     workingDir "src/main/python"
-    commandLine "nosetests", "-sv"
+    commandLine "pip", "install", "-e", "."
+    commandLine "sh", "-c", "nosetests", "-sv"
 }
 
 task buildPythonPackage(type: Exec) {
