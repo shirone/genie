@@ -37,8 +37,14 @@ clean {
     delete "src/main/python/dist"
 }
 
-task buildPythonPackage(type: Exec) {
+task testPythonPackage(type: Exec) {
     dependsOn clean
+    workingDir "src/main/python"
+    commandLine "ls", "-l"
+}
+
+task buildPythonPackage(type: Exec) {
+    dependsOn testPythonPackage
     workingDir "src/main/python"
     commandLine "python", "setup.py", "sdist"
 }
@@ -46,5 +52,5 @@ task buildPythonPackage(type: Exec) {
 task uploadToPypi(type: Exec) {
     dependsOn buildPythonPackage
     workingDir "src/main/python"
-    commandLine "sh", "-c", "echo PYPI_USERNAME: $System.env.PYPI_USERNAME"
+    commandLine "echo PYPI_USERNAME: $System.env.PYPI_USERNAME"
 }

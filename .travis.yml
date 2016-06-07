@@ -19,8 +19,8 @@ install: true
 before_script:
 - mysql -u root -e 'create database genie;'
 - mysql -u root genie < genie-ddl/mysql/3.0.0-schema.mysql.sql
-- sudo pip install -U setuptools
-- sudo pip install -U twine bumpversion
+- sudo pip install -U pip setuptools
+- sudo pip install -U twine
 script: ./gradle/buildViaTravis.sh
 before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
