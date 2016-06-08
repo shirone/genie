@@ -64,5 +64,6 @@ task buildPythonPackage(type: Exec) {
 task uploadToPypi(type: Exec) {
     dependsOn buildPythonPackage
     workingDir "src/main/python"
+    commandLine "sudo", "python", "setup.py", "register"
     commandLine "sudo", "twine", "upload", "-u $System.env.PYPI_USERNAME", "-p $System.env.PYPI_PASSWORD", "dist/*"
 }
