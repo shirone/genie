@@ -66,11 +66,11 @@ task uploadToPypi(type: Exec) {
     workingDir "src/main/python"
 
     def pypirc = new File('.pypirc')
-    pypirc.write '[pypi]\n'
-    pypirc.write 'repository: https://pypi.python.org/pypi\n'
-    pypirc.write 'username: $System.env.PYPI_USERNAME\n'
-    pypirc.write 'password: $System.env.PYPI_PASSWORD\n'
+    pypirc.text '''
+[pypi]
+repository: https://pypi.python.org/pypi
+username: $System.env.PYPI_USERNAME
+password: $System.env.PYPI_PASSWORD'''
     commandLine "sudo", "cat", ".pypirc"
 
-    commandLine "sudo", "twine", "upload", "--config-file", ".pypirc", "dist/*"
 }
