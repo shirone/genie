@@ -58,7 +58,7 @@ task testPythonPackage(type: Exec) {
 task buildPythonPackage(type: Exec) {
     dependsOn testPythonPackage
     workingDir "src/main/python"
-    commandLine "python", "setup.py", "sdist"
+    commandLine "sudo", "python", "setup.py", "sdist"
 }
 
 task uploadToPypi(type: Exec) {
